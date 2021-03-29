@@ -8,7 +8,7 @@ default_ca    = CA_default      # The default ca section
 [ CA_default ]
 
 default_days     = 3650         # How long to certify for
-default_crl_hours = 2         # How long before next CRL
+default_crl_days = 1         # How long before next CRL
 default_md       = sha256       # Use public key default MD
 preserve         = no           # Keep passed DN ordering
 
@@ -65,7 +65,7 @@ subjectKeyIdentifier   = hash
 authorityKeyIdentifier = keyid:always, issuer
 basicConstraints       = critical, CA:true
 keyUsage               = critical, digitalSignature, cRLSign, keyCertSign
-crlDistributionPoints  = URI:https://github.com/abirhassan-okta/sample_certificate_x509/blob/main/root/ca.crl.pem,URI:https://github.com/abirhassan-okta/sample_certificate_x509/blob/main/root/intermediate/ca-int.crl.pem
+crlDistributionPoints  = URI:https://raw.githubusercontent.com/abirhassan-okta/sample_certificate_x509/main/root/ca.crl,URI:https://raw.githubusercontent.com/abirhassan-okta/sample_certificate_x509/main/root/intermediate/ca-int.crl
 
 ####################################################################
 [ signing_policy ]
@@ -83,4 +83,4 @@ subjectKeyIdentifier   = hash
 authorityKeyIdentifier = keyid,issuer
 basicConstraints       = CA:FALSE
 keyUsage               = critical, nonRepudiation, digitalSignature, keyEncipherment
-crlDistributionPoints  = URI:https://github.com/abirhassan-okta/sample_certificate_x509/blob/main/root/ca.crl.pem,URI:https://github.com/abirhassan-okta/sample_certificate_x509/blob/main/root/intermediate/ca-int.crl.pem
+crlDistributionPoints  = URI:https://raw.githubusercontent.com/abirhassan-okta/sample_certificate_x509/main/root/ca.crl,URI:https://raw.githubusercontent.com/abirhassan-okta/sample_certificate_x509/main/root/intermediate/ca-int.crl
