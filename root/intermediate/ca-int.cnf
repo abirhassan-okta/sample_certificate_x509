@@ -65,7 +65,7 @@ subjectKeyIdentifier   = hash
 authorityKeyIdentifier = keyid:always, issuer
 basicConstraints       = critical, CA:true
 keyUsage               = critical, digitalSignature, cRLSign, keyCertSign
-crlDistributionPoints  = URI:https://github.com/abirhassan-okta/sample_certificate_x509/blob/main/root/ca.crl,URI:https://github.com/abirhassan-okta/sample_certificate_x509/blob/main/root/intermediate/ca-int.crl
+crlDistributionPoints  = URI:https://github.com/abirhassan-okta/sample_certificate_x509/blob/main/root/ca.crl.pem,URI:https://github.com/abirhassan-okta/sample_certificate_x509/blob/main/root/intermediate/ca-int.crl.pem
 
 ####################################################################
 [ signing_policy ]
@@ -83,4 +83,4 @@ subjectKeyIdentifier   = hash
 authorityKeyIdentifier = keyid,issuer
 basicConstraints       = CA:FALSE
 keyUsage               = critical, nonRepudiation, digitalSignature, keyEncipherment
-crlDistributionPoints  = URI:https://github.com/abirhassan-okta/sample_certificate_x509/blob/main/root/ca.crl,URI:https://github.com/abirhassan-okta/sample_certificate_x509/blob/main/root/intermediate/ca-int.crl
+crlDistributionPoints  = URI:https://github.com/abirhassan-okta/sample_certificate_x509/blob/main/root/ca.crl.pem,URI:https://github.com/abirhassan-okta/sample_certificate_x509/blob/main/root/intermediate/ca-int.crl.pem
