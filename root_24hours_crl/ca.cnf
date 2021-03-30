@@ -8,7 +8,7 @@ default_ca    = CA_default      # The default ca section
 [ CA_default ]
 
 default_days     = 3650         # How long to certify for
-default_crl_days = 1         # How long before next CRL
+default_crl_hours = 24         # How long before next CRL
 default_md       = sha256       # Use public key default MD
 preserve         = no           # Keep passed DN ordering
 
@@ -18,8 +18,8 @@ email_in_dn     = no            # Don't concat the email in the DN
 copy_extensions = copy          # Required to copy SANs from CSR to cert
 
 base_dir      = .
-certificate   = $base_dir/ca-int-cert.pem   # The CA certifcate
-private_key   = $base_dir/ca-int-key.pem    # The CA private key
+certificate   = $base_dir/ca-cert.pem   # The CA certifcate
+private_key   = $base_dir/ca-key.pem    # The CA private key
 new_certs_dir = $base_dir               # Location for new certs after signing
 database      = $base_dir/index.txt     # Database index file
 serial        = $base_dir/serial.txt    # The current serial number
@@ -30,7 +30,7 @@ unique_subject = no  # Set to 'no' to allow creation of
 ####################################################################
 [ req ]
 default_bits       = 4096
-default_keyfile    = ca-int-key.pem
+default_keyfile    = ca-key.pem
 distinguished_name = ca_distinguished_name
 x509_extensions    = ca_extensions
 string_mask        = utf8only
@@ -53,10 +53,10 @@ organizationalUnitName         = Organizational Unit (eg, division)
 organizationalUnitName_default = Sample Org
 
 commonName         = Common Name (e.g. server FQDN or YOUR name)
-commonName_default = ca-int.sample.org
+commonName_default = ca.sample.org
 
 emailAddress         = Email Address
-emailAddress_default = ca-int@sample.org
+emailAddress_default = ca@sample.org
 
 ####################################################################
 [ ca_extensions ]
@@ -64,8 +64,8 @@ emailAddress_default = ca-int@sample.org
 subjectKeyIdentifier   = hash
 authorityKeyIdentifier = keyid:always, issuer
 basicConstraints       = critical, CA:true
-keyUsage               = critical, digitalSignature, cRLSign, keyCertSign
-crlDistributionPoints  = URI:https://raw.githubusercontent.com/abirhassan-okta/sample_certificate_x509/main/root/ca.crl,URI:https://raw.githubusercontent.com/abirhassan-okta/sample_certificate_x509/main/root/intermediate/ca-int.crl
+keyUsage               = keyCertSign, cRLSign
+crlDistributionPoints  = URI:https://raw.githubusercontent.com/abirhassan-okta/sample_certificate_x509/main/root/ca.crl
 
 ####################################################################
 [ signing_policy ]
@@ -81,6 +81,6 @@ emailAddress           = optional
 [ signing_req ]
 subjectKeyIdentifier   = hash
 authorityKeyIdentifier = keyid,issuer
-basicConstraints       = CA:FALSE
-keyUsage               = critical, nonRepudiation, digitalSignature, keyEncipherment
-crlDistributionPoints  = URI:https://raw.githubusercontent.com/abirhassan-okta/sample_certificate_x509/main/root/ca.crl,URI:https://raw.githubusercontent.com/abirhassan-okta/sample_certificate_x509/main/root/intermediate/ca-int.crl
+basicConstraints       = CA:true
+keyUsage               = critical, digitalSignature, cRLSign, keyCertSign
+crlDistributionPoints  = URI:https://raw.githubusercontent.com/abirhassan-okta/sample_certificate_x509/main/root/ca.crl
